@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 CakePHP local
+=======
+CakePHP server
+>>>>>>> 7f6ae1d97dc5359e8387ccbf6859e103b1ac2556
 =======
 
 [![CakePHP](http://cakephp.org/img/cake-logo.png)](http://www.cakephp.org)
