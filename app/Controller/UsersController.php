@@ -1,7 +1,10 @@
 <?php
 // app/Controller/UsersController.php
 class UsersController extends AppController {
-var $components = array('Auth');
+
+	var $components = array('Auth');
+	var $uses = array('User','Language');
+
     public function beforeFilter() {
         parent::beforeFilter();
         
@@ -63,4 +66,26 @@ var $components = array('Auth');
         $this->Session->setFlash(__('User was not deleted'));
         return $this->redirect(array('action' => 'index'));
     }
+    
+	
+	public function login() {
+	    if ($this->request->is('post')) {
+	        if ($this->Auth->login()) {
+	            return $this->redirect($this->Auth->redirect());
+	        }
+	        $this->Session->setFlash(__('Invalid username or password, try again'));
+	    }
+	}
+	
+	public function logout() {
+	    return $this->redirect($this->Auth->logout());
+	}
+    
+	
+	public function profil(){
+		$this->User->contain('Language');
+		$user = $this->User->findById(1);
+		$this->set('user', $user);
+		//print_r($user);
+	}
 }

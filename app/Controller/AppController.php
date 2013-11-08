@@ -31,5 +31,17 @@ App::uses('Controller', 'Controller');
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
+// app/Controller/AppController.php
 class AppController extends Controller {
+
+	
+	var $components = array('Auth', 'Session', 'RequestHandler');
+	var $helpers    = array('Form', 'Html', 'Session',  'Text');
+	var $actsAs     = array('Containable');//...
+	
+
+    public function beforeFilter() {
+        $this->Auth->allow('index', 'view');
+    }
+    //...
 }
