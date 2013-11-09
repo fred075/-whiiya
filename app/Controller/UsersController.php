@@ -83,9 +83,8 @@ class UsersController extends AppController {
     
 	
 	public function profil(){
-		$this->User->contain('Language');
-		$user = $this->User->findById(1);
+		$this->User->contain('Language','Credit');
+		$user = $this->User->findById($this->Session->read('Auth.User.id'));
 		$this->set('user', $user);
-		//print_r($user);
 	}
 }

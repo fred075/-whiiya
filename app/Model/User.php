@@ -2,10 +2,12 @@
 // app/Model/User.php
 class User extends AppModel {
 	
+	var $hasOne = 'Credit';
 	
 	var $hasAndBelongsToMany = array(
 		'Language' => array(
-			'joinTable'             => 'languages_users',
+			//'joinTable'             => 'languages_users',
+			'joinTable'             => 'audios',
 			'foreignKey'            => 'user_id',
 			'associationForeignKey' => 'language_id'
 		)

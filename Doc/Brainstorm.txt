@@ -1,0 +1,6 @@
+* Each user has a nb of credit 
+* Everytime he listens to a word, he looses 1 credit
+* Everytime he records one word, he wins 1 credit
+* When he listens to a word, the app checks if an audio file with his accent already exists (table History). 
+	> If not, he'll be asked if he wants to record it
+	
