@@ -31,7 +31,8 @@ class WordsController extends AppController {
 		if($user['Credit']['amount']<=20) {
 			$this->set('error','1');
 		}
-		$this->User->save($user_new);
+		
+		$this->User->save($user_new['Credit']['amount']);
 		
 		//loading the credit into a session variable (to be able to access to it in the header label)
        	$this->Session->write('Auth.User.credit', $user['Credit']['amount']);
