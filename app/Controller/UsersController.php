@@ -71,6 +71,9 @@ class UsersController extends AppController {
 	public function login() {
 	    if ($this->request->is('post')) {
 	        if ($this->Auth->login()) {
+	        	//loading the credit into a session variable (to be able to access to it in the header label)
+	        	 $credit = $this->User->findById($this->Session->read('Auth.User.id'),array('fields'=>'Credit.amount'));
+	        	 $this->Session->write('Auth.User.credit', $credit['Credit']['amount']);
 	            return $this->redirect($this->Auth->redirect());
 	        }
 	        $this->Session->setFlash(__('Invalid username or password, try again'));
@@ -83,6 +86,7 @@ class UsersController extends AppController {
     
 	
 	public function profil(){
+		//debug($this->Auth);
 		$this->User->contain('Language','Credit');
 		$user = $this->User->findById($this->Session->read('Auth.User.id'));
 		$this->set('user', $user);

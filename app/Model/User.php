@@ -2,17 +2,18 @@
 // app/Model/User.php
 class User extends AppModel {
 	
-	var $hasOne = 'Credit';
-	
+	var $hasOne = array('Credit');
+	var $belongsTo ='Language';
+	/*
 	var $hasAndBelongsToMany = array(
-		'Language' => array(
+		'Audio1' => array(
 			//'joinTable'             => 'languages_users',
 			'joinTable'             => 'audios',
 			'foreignKey'            => 'user_id',
 			'associationForeignKey' => 'language_id'
 		)
 	);
-	
+	*/
     public $validate = array(
         'username' => array(
             'required' => array(

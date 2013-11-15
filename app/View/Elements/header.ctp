@@ -6,7 +6,8 @@ echo $this->Html->link($this->Html->image('logo.png', array('style'=>'height:120
 
 </div>
 <div style='position:absolute;right:20px;top:20px'>
-<span class="badge">Credit: <?//$this->Session->read('Auth.User.id')?></span>
+<?php //debug($this->Session);?>
+<span class="badge">Credit: <?=$this->Session->read('Auth.User.credit')?></span>
 </div>
 
 
