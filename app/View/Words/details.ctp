@@ -8,7 +8,7 @@
    
    $.jRecorder(
      { 
-        host : '../../js/jRecorder/html/acceptfile.php?filename=hello.wav' ,  //replace with your server path please
+        host : '../../js/jRecorder/html/acceptfile.php?filename=EN.wav' ,  //replace with your server path please
         callback_started_recording:     function(){callback_started(); },
         callback_stopped_recording:     function(){callback_stopped(); },
         callback_activityLevel:          function(level){callback_activityLevel(level); },
@@ -65,7 +65,7 @@ function playAudio(id) {
 foreach($word['Audio1'] as $k => $v) {
 	echo "
 	<audio id='audio_".$v['id']."'  preload='auto'>
-	<source src='http://localhost/we_have_it_in_your_accent/-whiiya/audio/".$word['Word']['word']."/".$v['Language']['code'].".wav' ></source>
+	<source src='http://localhost:8888/whiiya/audio/".$word['Word']['word']."/".$v['Language']['code'].".wav' ></source>
 	Your browser isn't invited for super fun audio time.
 	</audio>
 	
@@ -98,14 +98,17 @@ foreach($word['Audio1'] as $k => $v) {
   
 </div>
 
-  Status: <span id="status"></status>
+<div>
+Status: <span id="status"></status>
+</div>
 
+<div>
 <input type="button" id="record" value="Record" style="color:red">  
 
 <input type="button" id="stop" value="Stop">
 
 <input type="button" id="send" value="Send Data">
-
+</div>
 
 
 <!-- jRecorder -->
@@ -119,7 +122,7 @@ foreach($word['Audio1'] as $k => $v) {
                   $('#record').click(function(){
                     
                     
-                      $.jRecorder.record(30);
+                      $.jRecorder.record(8);
                       
                       
                       
