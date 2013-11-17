@@ -1,5 +1,5 @@
-<? echo $this->Html->script('jRecorder/js/jrecorder.js', true);?>
 <? echo $this->Html->script('jRecorder/js/jquery.min.js', true);?>
+<? echo $this->Html->script('jRecorder/js/jRecorder.js', true);?>
 <? echo $this->Html->script('audio-player/audio-player.js', true);?>
 
 
@@ -14,7 +14,7 @@
         callback_activityLevel:          function(level){callback_activityLevel(level); },
         callback_activityTime:     function(time){callback_activityTime(time); },
         callback_finished_sending:     function(time){ callback_finished_sending() },
-        swf_path : 'jRecorder.swf',
+        swf_path : '../../js/jRecorder/html/jRecorder.swf',
      }
    );
    </script>
