@@ -10,7 +10,13 @@ class Audio extends AppModel {
         'Language' => array(
             'className' => 'Language',
             'foreignKey' => 'language_id'
+        ),
+        'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'user_id'
         )
     );
+    
+    public $hasMany = "Rating";
     
 }

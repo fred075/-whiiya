@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+.no_audio {
+	color: red;	
+}
+
+.list-of-words {
+	width:50%;
+}
+

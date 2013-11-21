@@ -12,6 +12,7 @@ if (($this->Session->read('Auth.User.credit'))) {?>
 <span class="badge alert-danger login"><?=$this->Html->link('Logout','/users/logout'); ?></span>
 <?php } else { ?>
 <span class="badge alert-success login"><?=$this->Html->link('Login','/users/login'); ?></span>
+<span class="badge alert-success login"><?=$this->Html->link('Register','/users/add'); ?></span>
 <?php } ?>
 </div>
 

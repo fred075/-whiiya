@@ -3,7 +3,7 @@
 class WordsController extends AppController {
 
 	var $components = array('Auth');
-	var $uses = array('Word','Language','User','Audio');
+	var $uses = array('Word','Language','User','Audio', 'Rating');
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -12,10 +12,8 @@ class WordsController extends AppController {
     
 
     public function index() {
-    	$this->Word->Audio->contain(
-    		array(
-    			'User'
-    		)
+    	$this->Word->contain(
+    			array('Audio1' => 'User')
     	);
     	$words = $this->Word->find('all');
     	
@@ -25,7 +23,7 @@ class WordsController extends AppController {
     
     public function details($word){
     	
-    	$this->Word->contain(array('Audio1'=>'Language'));
+    	$this->Word->contain(array('Audio1'=>array('Language','Rating')));
     	$word = $this->Word->findByWord($word);
     	$user = $this->User->findById($this->Session->read('Auth.User.id'));
     	if(!empty($word['Audio1'])){ //if there are some audio files, we substract one credit
@@ -53,6 +51,20 @@ class WordsController extends AppController {
     	}
     	$this->set('word',$word);
     }
+    
+    
+	public function rating(){
+	    if ($this->request->is('post') && $this->Session->read('Auth.User.id')) {
+	    	$rating['Rating']['rating'] = $this->request->data['rating'];
+	    	$rating['Rating']['user_id'] = $this->Session->read('Auth.User.id');
+	    	$rating['Rating']['audio_id'] = $this->request->data['audio_id'];
+	    	if($this->Rating->save($rating)){
+	    		echo "1";
+	    	} else {
+	    		echo "0";
+	    	}
+	    }
+	}
     
     
     
