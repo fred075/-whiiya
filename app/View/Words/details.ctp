@@ -1,6 +1,10 @@
 <? echo $this->Html->script('jRecorder/js/jquery.min.js', true);?>
 <? echo $this->Html->script('jRecorder/js/jRecorder.js', true);?>
-<? echo $this->Html->script('audio-player/audio-player.js', true);?>
+<? echo $this->Html->script('rating/rating.js', true);?>
+<? echo $this->Html->css('../js/rating/rating.js.css', true);?>
+
+
+
 
 
 
@@ -32,22 +36,61 @@
   </p>
 
 <?php if(isset($error)){ echo "<script>alert('Not enough credit');</script>";} else { ?>
-<ul style='list-style:none;'>
 
 <?php 
-
 //Showing all the entries from audio table (all accents)
 foreach($word['Audio1'] as $k => $v) {
-
-	echo "<li style='height:40px'>";
+	$sumVoting = 0;
+	$userHasVoted = false;
+	
+	foreach ($v['Rating'] as $v2) { //if the user has already voted, disable the rating
+		$sumVoting += $v2['rating']; //sum up the ratings
+		if($v2['user_id'] == $this->Session->read('Auth.User.id')) { //go through each voting
+			$userHasVoted = true;
+		}
+	}
+	$nbOfVotings = count($word['Audio1'][$k]['Rating']);
+	if($nbOfVotings == null || $nbOfVotings == 0 ) { 
+		$meanVoting = '';
+		$visualVoting = 0;
+	} else {
+		$meanVoting = $sumVoting / $nbOfVotings;
+		$visualVoting = $meanVoting * 90 / 5;
+	}
+	
+	echo '<script type="text/javascript">';
+	
+	if($userHasVoted == false) {
+		echo '
+			$(function() {
+				$("#Rater'.$v['id'].'").rater({ postHref: "../rating" });
+			});
+		';
+	}
+	
+	echo '</script>';
+	
+	echo "<div style='width:270px;height:40px'>";
+	echo "<div style='float:left'>";
 	echo '<a href=# data-toggle="modal" data-target="#myModal">'.$v['file'].' '.$v['Language']['description'].'</a>';
 	
 	echo "<a href=# onMouseOver='playAudio(".$v['id'].")'>".$this->Html->image('sound.png', array('style'=>('width:25px;height:25px;margin-left:10px'))).'</a>';
-	echo "</li>";
+	echo "</div>";
+echo '
+	<div id="Rater'.$v['id'].'" name="'.$v['id'].'" class="stat" style="width:165px;float:right">
+		<div class="statVal">
+			<span class="ui-rater" style="text-align:left">
+				<span class="ui-rater-starsOff" style="width:90px;"><span class="ui-rater-starsOn" style="width:'.$visualVoting.'px"></span></span>
+				<span class="ui-rater-rating">'.$meanVoting.'</span>&#160;(<span class="ui-rater-rateCount">'.$nbOfVotings.'</span>)
+			</span>
+        </div>
+    </div>
+';
+	
+	echo "</div>";
 }
 
 ?>
-</ul>
 </div>
 </center>
 
