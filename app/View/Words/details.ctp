@@ -108,7 +108,7 @@ function playAudio(id) {
 foreach($word['Audio1'] as $k => $v) {
 	echo "
 	<audio id='audio_".$v['id']."'  preload='auto'>
-	<source src='http://localhost:8888/whiiya/audio/".$word['Word']['word']."/".$v['Language']['code'].".wav' ></source>
+	<source src='http://localhost:8888/audio/".$word['Word']['word']."/".$v['Language']['code'].".wav' ></source>
 	Your browser isn't invited for super fun audio time.
 	</audio>
 	
