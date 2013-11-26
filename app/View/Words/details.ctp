@@ -12,7 +12,7 @@
    
    $.jRecorder(
      { 
-        host : '../../js/jRecorder/html/acceptfile.php?filename=EN.wav' ,  //replace with your server path please
+        host : '../../js/jRecorder/html/acceptfile.php?filename=EN&amp;fname=bread' ,  //replace with your server path please
         callback_started_recording:     function(){callback_started(); },
         callback_stopped_recording:     function(){callback_stopped(); },
         callback_activityLevel:          function(level){callback_activityLevel(level); },
