@@ -1,5 +1,5 @@
 <?php
-   
+   print_r($_GET);
    if(!isset($_REQUEST['filename']))
    {
    	exit('No file');
