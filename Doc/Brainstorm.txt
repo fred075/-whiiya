@@ -3,4 +3,4 @@
 * Everytime he records one word, he wins 1 credit
 * When he listens to a word, the app checks if an audio file with his accent already exists (table History). 
 	> If not, he'll be asked if he wants to record it
-	
+* Multiple recording for the same word by the same user. A user is allowed to record a second time if the rating is too bad.
