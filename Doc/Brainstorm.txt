@@ -5,4 +5,5 @@
 	> If not, he'll be asked if he wants to record it
 * Multiple recording for the same word by the same user. A user is allowed to record a second time if the rating is too bad.
 * Recording buttons must be redesigned.
-* After recording is done, DB records must be inserted as well.
+* After recording is done, DB records must be inserted as well and user must be given the appropriate credit
+
