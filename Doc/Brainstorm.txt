@@ -6,4 +6,7 @@
 * Multiple recording for the same word by the same user. A user is allowed to record a second time if the rating is too bad.
 * Recording buttons must be redesigned.
 * After recording is done, DB records must be inserted as well and user must be given the appropriate credit
+* Display only Recording Options if there is no File.
+* Disqus (maybe: http://bakery.cakephp.org/articles/Toss/2009/12/09/disqus-comment-system-integration-helper )
+* Database Export
 
