@@ -4,9 +4,9 @@
 * When he listens to a word, the app checks if an audio file with his accent already exists (table History). 
 	> If not, he'll be asked if he wants to record it
 * Multiple recording for the same word by the same user. A user is allowed to record a second time if the rating is too bad.
-* Recording buttons must be redesigned.
-* After recording is done, DB records must be inserted as well and user must be given the appropriate credit
-* Display only Recording Options if there is no File.
-* Disqus (maybe: http://bakery.cakephp.org/articles/Toss/2009/12/09/disqus-comment-system-integration-helper )
-* Database Export
+* Recording buttons must be redesigned. (Fred)
+* After recording is done, DB records must be inserted as well and user must be given the appropriate credit (Fred)
+* Display only Recording Options if there is no File. (Zaid)
+* Disqus (maybe: http://bakery.cakephp.org/articles/Toss/2009/12/09/disqus-comment-system-integration-helper ) (Jannick)
+* Database Export (Jannick)
 
