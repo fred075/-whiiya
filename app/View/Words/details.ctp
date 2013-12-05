@@ -116,11 +116,9 @@ foreach($word['Audio1'] as $k => $v) {
 }
 
 ?>
-        
-        
 
-
- <a href='fsefs' >Sound</a>
+<?php if (!(isset($word))) { ?>
+<a href='fsefs' >Sound</a>
 
 
 <div style="background-color: #eeeeee;border:1px solid #cccccc">
@@ -152,6 +150,7 @@ Status: <span id="status"></status>
 <input type="button" id="send" value="Send Data">
 </div>
 
+<?php } ?>
 
 <!-- jRecorder -->
 
