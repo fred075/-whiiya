@@ -116,8 +116,7 @@ foreach($word['Audio1'] as $k => $v) {
 }
 
 ?>
-
-<?php if (!(isset($word))) { ?>
+<?php if (empty($word['Audio1']) ) { ?>
 <a href='fsefs' >Sound</a>
 
 

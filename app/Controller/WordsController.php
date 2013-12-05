@@ -42,7 +42,7 @@ class WordsController extends AppController {
 	    		array(
 	    			'conditions'=> array( 'AND' =>	
 	    				array('word_id'=>$word['Word']['id']),
-	    				array('language_id'=>$user['User']['language_id'])
+	    				array('Audio.language_id'=>$user['User']['language_id'])
 	    		))
 	    		);
 	    	
