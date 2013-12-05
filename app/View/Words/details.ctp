@@ -30,10 +30,12 @@
 <?php } ?>
 <center><div class="hero-unit">
   <h1><?=$word['Word']['word'];?></h1>
+  <?php if ($word['Audio1']) { ?>
   <p>This is a list of each pronouciation we found in our database:</p>
   <p>
   </p>
-
+  <?php } ?>
+  
 <?php if(isset($error)){ echo "<script>alert('Not enough credit');</script>";} else { ?>
 
 <?php 
