@@ -8,7 +8,7 @@
 /* CSS */
 .btnExample {
   color: #100;
-  background: #F7D358;
+  background: #F2F5A9;
   font-weight: bold;
 }
  
