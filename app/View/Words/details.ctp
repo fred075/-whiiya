@@ -3,10 +3,20 @@
 <? echo $this->Html->script('rating/rating.js', true);?>
 <? echo $this->Html->css('../js/rating/rating.js.css', true);?>
 
+<style type="text/css">
 
-
-
-
+/* CSS */
+.btnExample {
+  color: #100;
+  background: #F7D358;
+  font-weight: bold;
+}
+ 
+.btnExample:hover {
+  color: #FFF;
+  background: #900;
+}
+</style>
    <script>
    
    $.jRecorder(
@@ -118,37 +128,40 @@ foreach($word['Audio1'] as $k => $v) {
 }
 
 ?>
+<br />
 <?php if (empty($word['Audio1']) ) { ?>
-<a href='fsefs' >Sound</a>
+
 
 
 <div style="background-color: #eeeeee;border:1px solid #cccccc">
-  
-  Time: <span id="time">00:00</span>
-  
+ 
+  <a href=''><font size="5">Sound Recorder</font></a>
+  <div align="right">
+  		Time: <span id="time">00:00</span>
+  </div>
+  <br/>
+  <div align="right">
+ 		Audio recording level: <span id="level"></span>
+ 		<div id="levelbase" style="height:20px;width:200px;background-color:#ffff00; align:left;text-align:left;">
+  		<div id="levelbar" style="height:19px;width:2px;background-color:red"></div>
+  		</div>
+  </div>
+  <br />      
+  <div align="right">
+  <input type="button" class="btnExample" id="record" value="Record" style="width:100px;">  
+
+  <input type="button" class="btnExample" id="stop" value="Stop" style="width:100px;">
+
+   <input type="button" class="btnExample" id="send" value="Submit" style="width:100px;">
+   </div>
 </div>
 
 
-<div>
-  Level: <span id="level"></span>
-</div>  
 
-<div id="levelbase" style="width:200px;height:20px;background-color:#ffff00">
-  
-  <div id="levelbar" style="height:19px; width:2px;background-color:red"></div>
-  
-</div>
-
-<div>
-Status: <span id="status"></status>
-</div>
-
-<div>
-<input type="button" id="record" value="Record" style="color:red">  
-
-<input type="button" id="stop" value="Stop">
-
-<input type="button" id="send" value="Send Data">
+<br />
+<div style="background-color: #eeeeee;border:1px solid #cccccc">
+  Status: <span id="status"></status>
+  <br />
 </div>
 
 <?php } ?>
@@ -241,17 +254,16 @@ Status: <span id="status"></status>
                   {
                     
                     $('#level').html(level);
-                    
+                                                          
                     if(level == -1)
                     {
                       $('#levelbar').css("width",  "2px");
                     }
-                    else
+                    else 
                     {
-                      $('#levelbar').css("width", (level * 2)+ "px");
-                    }
-                    
-                    
+                         $('#levelbar').css("width", (level * 2)+ "px");
+                    }                 
+                   
                   }
                   
                   function callback_activityTime(time)
