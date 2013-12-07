@@ -1,22 +1,10 @@
+<?php $this->set('menuNb', 2);?>
+
 <? echo $this->Html->script('jRecorder/js/jquery.min.js', true);?>
 <? echo $this->Html->script('jRecorder/js/jRecorder.js', true);?>
 <? echo $this->Html->script('rating/rating.js', true);?>
 <? echo $this->Html->css('../js/rating/rating.js.css', true);?>
 
-<style type="text/css">
-
-/* CSS */
-.btnExample {
-  color: #100;
-  background: #F2F5A9;
-  font-weight: bold;
-}
- 
-.btnExample:hover {
-  color: #FFF;
-  background: #900;
-}
-</style>
    <script>
    
    $.jRecorder(
@@ -35,17 +23,19 @@
 
 
 
-<?php if (isset($audio_to_add)) { ?>
-<div class="alert alert-success">Your accent doesn't exit. Record your voice to earn some credits.</div>
-<?php } ?>
+
 <center><div class="hero-unit">
   <h1><?=$word['Word']['word'];?></h1>
   <?php if ($word['Audio1']) { ?>
   <p>This is a list of each pronouciation we found in our database:</p>
   <p>
   </p>
-  <?php } ?>
+  <?php } else { ?>
   
+  <div class="alert alert-warning" style="width:300px">No audio file found.</div>
+  
+  
+  <?php }?>
 <?php if(isset($error)){ echo "<script>alert('Not enough credit');</script>";} else { ?>
 
 <?php 
@@ -132,27 +122,31 @@ foreach($word['Audio1'] as $k => $v) {
 <?php if (empty($word['Audio1']) ) { ?>
 
 
+<center>
+<?php if (isset($audio_to_add)) { ?>
+<div class="alert alert-success" style="width:350px"><span class="glyphicon glyphicon-hand-down" style="font-size:30px;float:left"></span> Your accent doesn't exit. Record your voice to earn some credits.</div>
+<?php } ?>
 
-<div style="background-color: #eeeeee;border:1px solid #cccccc">
- 
-  <a href=''><font size="5">Sound Recorder</font></a>
-  <div align="right">
+<div class="panel panel-primary" id="recordWindow">
+ <div class="panel-heading" id="title">
+  Sound Recorder
+ </div> 
+  <div class="panel-body">
   		Time: <span id="time">00:00</span>
-  </div>
   <br/>
-  <div align="right">
+  <div >
  		Audio recording level: <span id="level"></span>
  		<div id="levelbase" style="height:20px;width:200px;background-color:#ffff00; align:left;text-align:left;">
   		<div id="levelbar" style="height:19px;width:2px;background-color:red"></div>
   		</div>
   </div>
   <br />      
-  <div align="right">
-  <input type="button" class="btnExample" id="record" value="Record" style="width:100px;">  
+  <div >
+  <input type="button" class="btn btn-success" id="record" value="Record" style="width:100px;">  
 
-  <input type="button" class="btnExample" id="stop" value="Stop" style="width:100px;">
+  <input type="button" class="btn btn-danger" id="stop" value="Stop" style="width:100px;">
 
-   <input type="button" class="btnExample" id="send" value="Submit" style="width:100px;">
+   <input type="button" class="btn btn-primary" id="send" value="Submit" style="width:100px;">
    </div>
 </div>
 
@@ -163,7 +157,8 @@ foreach($word['Audio1'] as $k => $v) {
   Status: <span id="status"></status>
   <br />
 </div>
-
+</div>
+</center>
 <?php } ?>
 
 <!-- jRecorder -->

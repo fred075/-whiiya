@@ -32,9 +32,9 @@ if (($this->Session->read('Auth.User.credit'))) {?>
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
 <?php  if (($this->Session->read('Auth.User.credit'))) {?>
-      <li class="active"><?=$this->Html->link('Profil','/users/profil');?></a></li>
+      <li class="<? if($menuNb==1) echo 'active';?>"><?=$this->Html->link('Profil','/users/profil');?></a></li>
 <?php } ?>
-      <li><?=$this->Html->link('List of words','/words');?></a></li>
+      <li class="<? if($menuNb==2) echo 'active';?>"><?=$this->Html->link('List of words','/words');?></a></li>
       <li class="dropdown">
   </div><!-- /.navbar-collapse -->
 </nav>

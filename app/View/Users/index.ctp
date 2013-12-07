@@ -1,3 +1,4 @@
+<?php $this->set('menuNb', 1);?>
 <?php if ($this->Session->read('Auth.User.id')) echo "Logged in";?>
 
 Welcome <?=$this->Session->read('Auth.User.username'); ?>!

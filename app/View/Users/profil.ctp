@@ -1,3 +1,5 @@
+<?php $this->set('menuNb', 1);?>
+
 Welcome <?=$user['User']['username'] ?>!
 
 <br>

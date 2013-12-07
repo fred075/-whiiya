@@ -8,3 +8,22 @@
 	width:50%;
 }
 
+.btnExample {
+  color: #100;
+  background: #F2F5A9;
+  font-weight: bold;
+}
+ 
+.btnExample:hover {
+  color: #FFF;
+  background: #900;
+}
+
+.panel-header #title a{
+	color: white;
+}
+
+#recordWindow {
+	width:350px;
+	text-align:left;
+}

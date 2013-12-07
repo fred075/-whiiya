@@ -45,7 +45,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <body>
-<?php echo $this->element('header');?>
+<?php echo $this->element('header', array(
+    "menu" => $menuNb
+));?>
 
 	<div id="container">
 		<div id="content">

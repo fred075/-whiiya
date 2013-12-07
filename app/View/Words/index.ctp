@@ -1,4 +1,4 @@
-
+<?php $this->set('menuNb', 2);?>
 <center>
 <div class="panel panel-info list-of-words">
 	<div class="panel-heading">
