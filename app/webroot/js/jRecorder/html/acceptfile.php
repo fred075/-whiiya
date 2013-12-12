@@ -1,6 +1,22 @@
 <?php
-   
-   $filename = $_REQUEST[filename];
+$fullPath = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+$string = $fullPath;
+$string = explode('/', $string);
+array_pop($string);
+array_pop($string);
+array_pop($string);
+array_pop($string);
+array_pop($string);
+array_pop($string);
+
+$string = implode('/', $string);
+
+$filename = $_REQUEST['filename'];
+$filename_tmp = explode("/", $filename);
+$filename = $filename_tmp[0] . '/' . $filename_tmp[1]; 
+$word = explode("/", $filename);
+
+
 
    if(!isset($filename))
    {
@@ -26,7 +42,11 @@
    	 
    	fwrite($fp, file_get_contents('php://input'));
    	 
-   	fclose($fp);   	
+   	fclose($fp);  
+
+   	file_get_contents("http://" . $string . "/audios/add?word=" . $word[0] . '&uid=' . $filename_tmp[2] ); //insert into DB
+   	echo "http://" . $string . "/audios/add?word=" . $word[0] . '&uid=' . $filename_tmp[2];
+   	
    }
      
    exit('done');

@@ -5,16 +5,28 @@
 <? echo $this->Html->script('rating/rating.js', true);?>
 <? echo $this->Html->css('../js/rating/rating.js.css', true);?>
 
+<?php 
+
+$fullPath = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+$string = $fullPath;
+$string = explode('/', $string);
+array_pop($string);
+array_pop($string);
+array_pop($string);
+$string = implode('/', $string);
+
+?>
+
    <script>
    
    $.jRecorder(
      { 
-        host : "../../js/jRecorder/html/acceptfile.php?filename=<?=$word['Word']['word']?>/<?=$this->Session->read('Auth.User.Language.code')?>"  ,  //replace with your server path please
+        host : "../../js/jRecorder/html/acceptfile.php?filename=<?=$word['Word']['word']?>/<?=$this->Session->read('Auth.User.Language.code')?>/<?=$this->Session->read('Auth.User.id')?>"  ,  //replace with your server path please
         callback_started_recording:     function(){callback_started(); },
         callback_stopped_recording:     function(){callback_stopped(); },
         callback_activityLevel:          function(level){callback_activityLevel(level); },
         callback_activityTime:     function(time){callback_activityTime(time); },
-        callback_finished_sending:     function(time){ callback_finished_sending() },
+        callback_finished_sending:     function(time){ callback_finished_sending(); },
         swf_path : '../../js/jRecorder/html/jRecorder.swf',
      }
    );
@@ -109,7 +121,7 @@ function playAudio(id) {
 foreach($word['Audio1'] as $k => $v) {
 	echo "
 	<audio id='audio_".$v['id']."'  preload='auto'>
-	<source src='http://localhost:8888/audio/".$word['Word']['word']."/".$v['Language']['code'].".wav' ></source>
+	<source src='http://".$string."/audio/".$word['Word']['word']."/".$v['Language']['code'].".wav' ></source>
 	Your browser isn't invited for super fun audio time.
 	</audio>
 	
