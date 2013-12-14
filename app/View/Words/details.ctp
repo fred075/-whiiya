@@ -18,11 +18,6 @@ $string = implode('/', $string);
 ?>
 
    <script>
-   $( document ).ready(function() {
-	   function aff(){
-		   $('#myModal').modal('show')
-	   }
-	});
 
    $.jRecorder(
      { 
@@ -31,7 +26,7 @@ $string = implode('/', $string);
         callback_stopped_recording:     function(){callback_stopped(); },
         callback_activityLevel:          function(level){callback_activityLevel(level); },
         callback_activityTime:     function(time){callback_activityTime(time); },
-        callback_finished_sending:     function(time){ aff();callback_finished_sending(); },
+        callback_finished_sending:     function(time){ callback_finished_sending(); },
         swf_path : '../../js/jRecorder/html/jRecorder.swf',
      }
    );
@@ -241,7 +236,7 @@ foreach($word['Audio1'] as $k => $v) {
                   {
       
                       $('#status').html('Recording is finished');
-                    
+                    aff();
                   }
                   
                   function callback_started()
@@ -319,20 +314,3 @@ foreach($word['Audio1'] as $k => $v) {
 
 <?php }?>
 
-
-<div id="myModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title"><?=$title?></h4>
-      </div>
-      <div class="modal-body">
-        <p><?=$content?></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->

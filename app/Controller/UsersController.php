@@ -3,7 +3,7 @@
 class UsersController extends AppController {
 
 	var $components = array('Auth');
-	var $uses = array('User','Language', 'Rating');
+	var $uses = array('User','Language', 'Rating', 'Audio');
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -97,6 +97,10 @@ class UsersController extends AppController {
 		$this->User->contain('Language','Credit');
 		$user = $this->User->findById($this->Session->read('Auth.User.id'));
 		$this->set('user', $user);
+		
+		$audios = $this->Audio->find('all', array('conditions'=>array('user_id'=>$this->Session->read('Auth.User.id'))));
+		
+		$this->set('nbOfEntriesForUser', count($audios));
 	}
 	
 	public function hasVotedForAudio($audio_id, $user_id=null){

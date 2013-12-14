@@ -112,6 +112,9 @@ class WordsController extends AppController {
 	       $audio = $this->Audio->find('first', array('conditions' => array('user_id NOT' => $this->Session->read('Auth.User.id')), 'order' => 'RAND()'));
 	       //check if the user also recorded this word
 	       $userAlsoRecorded = $this->Audio->find('first', array('conditions' => array('word_id'=>$audio['Audio']['word_id'], 'user_id' => $this->Session->read('Auth.User.id'))));
+	       if($audio['Audio']['language_id'] == $this->Session->read('Auth.User.language_id')) {
+	       	$userAlsoRecorded = "placeholder"; //just to stay in the loop
+	       }
 		} while (!empty($userAlsoRecorded));
 		return $audio;
 	}
