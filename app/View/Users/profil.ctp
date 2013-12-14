@@ -11,9 +11,9 @@ Credits: <?=$user['Credit']['amount'] ?>
 
 <br>
 <?php 
-if ($nbOfEntriesForUser <=5) $color = 'blue';
-if ($nbOfEntriesForUser >5) $color = 'red';
-if ($nbOfEntriesForUser >10) $color = 'yellow';
+if ($nbOfEntriesForUser <=5) $color = '#2554C7';
+if ($nbOfEntriesForUser >5) $color = '#342D7E';
+if ($nbOfEntriesForUser >10) $color = '#D4A017';
 	
 	
 	echo '<span class="glyphicon glyphicon-star" style="color:'.$color.';font-size:50px"></span>You have actually '.$nbOfEntriesForUser.' audio record(s)';
