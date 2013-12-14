@@ -131,13 +131,11 @@ foreach($word['Audio1'] as $k => $v) {
 
 ?>
 <br />
-<?php if (empty($word['Audio1']) ) { ?>
 
 
 <center>
-<?php if (isset($audio_to_add)) { ?>
+<?php if (isset($audio_to_add) and $audio_to_add == true) { ?>
 <div class="alert alert-success" style="width:350px"><span class="glyphicon glyphicon-hand-down" style="font-size:30px;float:left"></span> Your accent doesn't exit. Record your voice to earn some credits.</div>
-<?php } ?>
 
 <div class="panel panel-primary" id="recordWindow">
  <div class="panel-heading" id="title">

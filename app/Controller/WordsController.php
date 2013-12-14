@@ -17,7 +17,10 @@ class WordsController extends AppController {
     	);
     	$words = $this->Word->find('all');
     	
+    	$audio_empty = $this->findWordsWithNoAudioByUser();
+
     	$this->set('words',$words);
+    	$this->set('audio_empty',$audio_empty);
     }
 
     
@@ -33,22 +36,22 @@ class WordsController extends AppController {
 			if($user['Credit']['amount']<=20) {
 				$this->set('error','1');
 			}
-			$this->User->save($user_new['Credit']['amount']);
+			$this->User->saveAll($user_new);
 			//loading the credit into a session variable (to be able to access to it in the header label)
 	       	$this->Session->write('Auth.User.credit', $user['Credit']['amount']);
-    	} else {
+    	} 
+    	
 	    	//search for the accent of the user for this word
 	    	$word_with_user_accent = $this->Audio->find('first',
 	    		array(
 	    			'conditions'=> array( 'AND' =>	
 	    				array('word_id'=>$word['Word']['id']),
-	    				array('Audio.language_id'=>$user['User']['language_id'])
+	    				array('Audio.language_id'=>$user['User']['language_id']),
+	    				array('Audio.user_id'=>$user['User']['id'])
 	    		))
 	    		);
-	    	
 	    	if(empty($word_with_user_accent)) $this->set('audio_to_add',true);
     	
-    	}
     	$this->set('word',$word);
     }
     
@@ -65,7 +68,17 @@ class WordsController extends AppController {
 	    	}
 	    }
 	}
-    
+	
+	public function findWordsWithNoAudioByUser(){
+		
+		do {
+	       //find an random audio file from another user than the logged in one
+	       $audio = $this->Audio->find('first', array('conditions' => array('user_id NOT' => $this->Session->read('Auth.User.id')), 'order' => 'RAND()'));
+	       //check if the user also recorded this word
+	       $userAlsoRecorded = $this->Audio->find('first', array('conditions' => array('word_id'=>$audio['Audio']['word_id'], 'user_id' => $this->Session->read('Auth.User.id'))));
+		} while (!empty($userAlsoRecorded));
+		return $audio;
+	}
     
     
     

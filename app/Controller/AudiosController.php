@@ -92,4 +92,7 @@ class AudiosController extends AppController {
 		if($user_id == null) $user_id = $this->Session->read('Auth.User.id');
 		$this->Rating->findByUserId($user_id);
 	}
+	
+	
+	
 }

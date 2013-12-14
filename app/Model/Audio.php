@@ -14,6 +14,10 @@ class Audio extends AppModel {
         'User' => array(
             'className' => 'User',
             'foreignKey' => 'user_id'
+        ),
+        'Word' => array(
+            'className' => 'Word',
+            'foreignKey' => 'word_id'
         )
     );
     
