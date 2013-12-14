@@ -25,6 +25,11 @@ class AudiosController extends AppController {
         	$audio['Audio']['word_id'] = $word['Word']['id'];
         	  error_log(serialize($audio), 0);
             if ($this->Audio->save($audio)) {
+				$user = $this->User->findById($user['User']['id']);
+				$user_new = $user;
+				$user_new['Credit']['amount'] = $user['Credit']['amount']+5;
+				$this->User->saveAll($user_new);
+        	  error_log(serialize($user_new), 0);
             }
         }
     }
@@ -75,6 +80,9 @@ class AudiosController extends AppController {
 	        }
 	    }
 	}
+	
+	
+
 	
 	public function logout() {
 	    return $this->redirect($this->Auth->logout());

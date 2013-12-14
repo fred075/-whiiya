@@ -1,6 +1,6 @@
 <?php $this->set('menuNb', 2);?>
 
-<? echo $this->Html->script('jRecorder/js/jquery.min.js', true);?>
+<? echo $this->Html->script('js/jRecorder.js', true);?>
 <? echo $this->Html->script('jRecorder/js/jRecorder.js', true);?>
 <? echo $this->Html->script('rating/rating.js', true);?>
 <? echo $this->Html->css('../js/rating/rating.js.css', true);?>
@@ -18,7 +18,12 @@ $string = implode('/', $string);
 ?>
 
    <script>
-   
+   $( document ).ready(function() {
+	   function aff(){
+		   $('#myModal').modal('show')
+	   }
+	});
+
    $.jRecorder(
      { 
         host : "../../js/jRecorder/html/acceptfile.php?filename=<?=$word['Word']['word']?>/<?=$this->Session->read('Auth.User.Language.code')?>/<?=$this->Session->read('Auth.User.id')?>"  ,  //replace with your server path please
@@ -26,7 +31,7 @@ $string = implode('/', $string);
         callback_stopped_recording:     function(){callback_stopped(); },
         callback_activityLevel:          function(level){callback_activityLevel(level); },
         callback_activityTime:     function(time){callback_activityTime(time); },
-        callback_finished_sending:     function(time){ callback_finished_sending(); },
+        callback_finished_sending:     function(time){ aff();callback_finished_sending(); },
         swf_path : '../../js/jRecorder/html/jRecorder.swf',
      }
    );
@@ -313,3 +318,21 @@ foreach($word['Audio1'] as $k => $v) {
 <!-- / jRecorder -->
 
 <?php }?>
+
+
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><?=$title?></h4>
+      </div>
+      <div class="modal-body">
+        <p><?=$content?></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

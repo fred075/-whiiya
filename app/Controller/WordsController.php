@@ -1,4 +1,5 @@
 <?php
+include_once '../webroot/functions.php';
 // app/Controller/UsersController.php
 class WordsController extends AppController {
 
@@ -26,6 +27,7 @@ class WordsController extends AppController {
     
     public function details($word){
     	
+    	
     	$this->Word->contain(array('Audio1'=>array('Language','Rating')));
     	$word = $this->Word->findByWord($word);
     	$user = $this->User->findById($this->Session->read('Auth.User.id'));
@@ -50,7 +52,13 @@ class WordsController extends AppController {
 	    				array('Audio.user_id'=>$user['User']['id'])
 	    		))
 	    		);
+	    		
+	    	//check if an audio file with the same user language already exists
+	    	$tmp = $this->Audio->find('first', array('conditions'=> array('word_id'=>$word['Word']['id'], 'Audio.language_id'=>$user['User']['language_id'])));
+	    	
 	    	if(empty($word_with_user_accent)) $this->set('audio_to_add',true);
+	    	//if an audio file alreay exists, the use's not allowed to rec
+	    	if(!empty($tmp)) {$this->set('audio_to_add',false);}
     	
     	$this->set('word',$word);
     }
@@ -66,8 +74,36 @@ class WordsController extends AppController {
 	    	} else {
 	    		echo "0";
 	    	}
+	    	
+	    	$this->cleanBadAudio($rating['Rating']['audio_id']);
+	    	
 	    }
 	}
+	
+	
+	public function cleanBadAudio($audio_id){ //deletes bad rated audio files
+		$rating = $this->Rating->find('all', array('conditions' => array('audio_id' =>$audio_id)));
+		$sum = 0;
+		if(count($rating) >= 2){ //to change into 5
+			foreach ($rating as $r){
+				$sum += $r['Rating']['rating'];
+			}
+			$mean = $sum / count($rating);
+			if($mean <= 2.5){ //change to less
+				$audio = $this->Audio->findById($rating[0]['Rating']['audio_id']);//get word name
+				$word = $this->Word->findById($audio['Audio']['word_id']);
+				$word_name = $word['Word']['word'];
+				$language = $audio['Language']['code'];
+				
+				$pathToDelete = $word_name . '/' . $language . '.wav';
+				deleteFile($pathToDelete);
+				
+				$this->Rating->deleteAll(array('Rating.audio_id' => $rating[0]['Rating']['audio_id']));
+				$this->Audio->delete($audio_id);
+			}
+		}
+	}
+
 	
 	public function findWordsWithNoAudioByUser(){
 		
