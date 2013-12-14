@@ -1,6 +1,6 @@
 <?php $this->set('menuNb', 2);?>
 
-<? echo $this->Html->script('js/jRecorder.js', true);?>
+<? echo $this->Html->script('jRecorder/js/jquery.min.js', true);?>
 <? echo $this->Html->script('jRecorder/js/jRecorder.js', true);?>
 <? echo $this->Html->script('rating/rating.js', true);?>
 <? echo $this->Html->css('../js/rating/rating.js.css', true);?>
