@@ -4,7 +4,7 @@ include_once '../webroot/functions.php';
 class WordsController extends AppController {
 
 	var $components = array('Auth');
-	var $uses = array('Word','Language','User','Audio', 'Rating');
+	var $uses = array('Word','Language','User','Audio', 'Rating', 'Credit');
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -33,12 +33,13 @@ class WordsController extends AppController {
     	$user = $this->User->findById($this->Session->read('Auth.User.id'));
     	if(!empty($word['Audio1'])){ //if there are some audio files, we substract one credit
 	    	//updating the credits (-1)
-			$user_new = $user;
-			$user_new['Credit']['amount'] = $user['Credit']['amount']-1;
+			$user['Credit']['amount'] = $user['Credit']['amount']-1;
 			if($user['Credit']['amount']<=20) {
 				$this->set('error','1');
 			}
-			$this->User->saveAll($user_new);
+			$credit = $this->Credit->findByUserId($this->Session->read('Auth.User.id'));
+			$credit['Credit']['amount'] = $user['Credit']['amount'];
+			$this->Credit->save($credit);
 			//loading the credit into a session variable (to be able to access to it in the header label)
 	       	$this->Session->write('Auth.User.credit', $user['Credit']['amount']);
     	} 

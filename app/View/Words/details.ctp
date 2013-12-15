@@ -83,8 +83,8 @@ foreach($word['Audio1'] as $k => $v) {
 	
 	echo '</script>';
 	
-	echo "<div style='width:270px;height:40px'>";
-	echo "<div style='float:left'>";
+	echo "<div style='width:350px;height:40px'>";
+	echo "<div style='float:left;text-align:right;width:50%'>";
 	echo '<a href=# data-toggle="modal" data-target="#myModal">'.$v['file'].' '.$v['Language']['description'].'</a>';
 	
 	echo "<a href=# onMouseOver='playAudio(".$v['id'].")'>".$this->Html->image('sound.png', array('style'=>('width:25px;height:25px;margin-left:10px'))).'</a>';
@@ -156,7 +156,7 @@ foreach($word['Audio1'] as $k => $v) {
 
   <input type="button" class="btn btn-danger" id="stop" value="Stop" style="width:100px;">
 
-   <input type="button" class="btn btn-primary" id="send" value="Submit" style="width:100px;">
+   <input type="button" class="btn btn-primary" id="send" value="Submit" disabled style="width:100px;">
    </div>
 </div>
 
@@ -215,8 +215,9 @@ foreach($word['Audio1'] as $k => $v) {
                   $('#stop').click(function(){
                     
                     
-                    
+                     document.getElementById('send').disabled = false;
                      $.jRecorder.stop();
+                     
                     
                     
                   })

@@ -99,7 +99,18 @@ class UsersController extends AppController {
 		$this->set('user', $user);
 		
 		$audios = $this->Audio->find('all', array('conditions'=>array('user_id'=>$this->Session->read('Auth.User.id'))));
-		
+		$usersAudioFiles = array();
+		foreach ($audios as $a){ //load stats
+			$rating = $this->Rating->findAllByAudioId($a['Audio']['id']);
+			if(!empty($rating)){
+				$sum = 0;
+				foreach ($rating as $r){
+					$sum += $r['Rating']['rating'];
+				}
+				$usersAudioFiles[$a['Word']['word']] = $sum / count($rating);
+			}
+			$this->set('usersAudioFiles', $usersAudioFiles);
+		}
 		$this->set('nbOfEntriesForUser', count($audios));
 	}
 	
