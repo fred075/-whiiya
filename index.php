@@ -1,4 +1,5 @@
 <?php
+echo "hi";exit;
 /**
  * Requests collector.
  *

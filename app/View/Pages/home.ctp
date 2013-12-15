@@ -1,5 +1,5 @@
 <?php
-
+header('location:./users/profil');
 /**
  *
  * PHP 5

@@ -18,7 +18,11 @@ $string = implode('/', $string);
 ?>
 
    <script>
-
+function aff(){
+	alert("You've just earnt 5 credits");
+	$('#recordWindow').hide();
+	//window.location.reload();
+}
    $.jRecorder(
      { 
         host : "../../js/jRecorder/html/acceptfile.php?filename=<?=$word['Word']['word']?>/<?=$this->Session->read('Auth.User.Language.code')?>/<?=$this->Session->read('Auth.User.id')?>"  ,  //replace with your server path please
@@ -237,7 +241,6 @@ foreach($word['Audio1'] as $k => $v) {
                   {
       
                       $('#status').html('Recording is finished');
-                    aff();
                   }
                   
                   function callback_started()
@@ -273,7 +276,7 @@ foreach($word['Audio1'] as $k => $v) {
                   {
                     
                       $('#status').html('File has been sent to server mentioned as host parameter');
-                      
+                      aff();
                       
                   }
                   

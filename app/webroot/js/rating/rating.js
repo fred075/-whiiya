@@ -44,6 +44,7 @@ $.fn.rater.rate = function($this, opts, rating) {
       complete: function(req) {
         if (req.status == 200) { //success
           opts.rating = parseFloat(req.responseText);
+                    window.location.reload();
           $off.unbind('click').unbind('mousemove').unbind('mouseenter').unbind('mouseleave');
           $off.css('cursor', 'default'); $on.css('cursor', 'default');
           $off.fadeTo(600, 0.1, function() {

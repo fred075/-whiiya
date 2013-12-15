@@ -71,13 +71,13 @@ class WordsController extends AppController {
 	    	$rating['Rating']['user_id'] = $this->Session->read('Auth.User.id');
 	    	$rating['Rating']['audio_id'] = $this->request->data['audio_id'];
 	    	if($this->Rating->save($rating)){
-	    		echo "1";
+	    		//echo "1";
 	    	} else {
-	    		echo "0";
+	    		//echo "0";
 	    	}
 	    	
 	    	$this->cleanBadAudio($rating['Rating']['audio_id']);
-	    	
+	    	$this->autoRender=false;
 	    }
 	}
 	

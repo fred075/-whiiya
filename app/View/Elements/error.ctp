@@ -1,1 +1,1 @@
-<div id="flashMessage" class="message">The user has been saved</div>
+<div id="flashMessage" class="message success">The user has been saved</div>
