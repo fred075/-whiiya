@@ -1,5 +1,34 @@
 <?php $this->set('menuNb', 2);?>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+
+<script>
+  $(function() {
+	  
+    var availableTags = [
+<?php 
+foreach($words as $k => $v) {
+	echo '"'.$v['Word']['word'].'",';
+}
+?>
+    ];
+    
+    $( "#wordsTextbox" ).autocomplete({
+      source: availableTags
+    });
+  });
+  </script>
+  
+
 <center>
+
+<form method="post" action="" role="form">
+<div class="form-group" style='width:420px'> 
+<input type="text" id="wordsTextbox" name="wordsTextbox" class="form-control" style="float:left;width:300px">
+<button class="btn btn-info">Search</button>
+</div>
+</form>
+
 <div class="panel panel-info list-of-words">
 	<div class="panel-heading">
 		List of words :

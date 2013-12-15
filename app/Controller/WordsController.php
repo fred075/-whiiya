@@ -13,15 +13,19 @@ class WordsController extends AppController {
     
 
     public function index() {
-    	$this->Word->contain(
-    			array('Audio1' => 'User')
-    	);
-    	$words = $this->Word->find('all');
+    	if(isset($_POST['wordsTextbox'])){
+	    	$words = $this->Word->find('all', array('conditions'=> array('Word LIKE'=> '%'.$_POST['wordsTextbox'].'%')));
+    	} else {
+	    	$this->Word->contain(
+	    			array('Audio1' => 'User')
+	    	);
+	    	$words = $this->Word->find('all');
+	    	$audio_empty = $this->findWordsWithNoAudioByUser();
+	    	$this->set('audio_empty',$audio_empty);
+    	}
     	
-    	$audio_empty = $this->findWordsWithNoAudioByUser();
 
     	$this->set('words',$words);
-    	$this->set('audio_empty',$audio_empty);
     }
 
     
@@ -107,7 +111,7 @@ class WordsController extends AppController {
 
 	
 	public function findWordsWithNoAudioByUser(){
-		
+		$timer = 0;
 		do {
 	       //find an random audio file from another user than the logged in one
 	       $audio = $this->Audio->find('first', array('conditions' => array('user_id NOT' => $this->Session->read('Auth.User.id')), 'order' => 'RAND()'));
@@ -116,6 +120,8 @@ class WordsController extends AppController {
 	       if($audio['Audio']['language_id'] == $this->Session->read('Auth.User.language_id')) {
 	       	$userAlsoRecorded = "placeholder"; //just to stay in the loop
 	       }
+	       $timer += 1;
+	       if($timer >= 15) return;
 		} while (!empty($userAlsoRecorded));
 		return $audio;
 	}

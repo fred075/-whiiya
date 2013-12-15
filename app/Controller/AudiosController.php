@@ -26,9 +26,9 @@ class AudiosController extends AppController {
         	  error_log(serialize($audio), 0);
             if ($this->Audio->save($audio)) {
 				$user = $this->User->findById($user['User']['id']);
-				$user_new = $user;
-				$user_new['Credit']['amount'] = $user['Credit']['amount']+5;
-				$this->User->saveAll($user_new);
+				$credit = $this->Credit->findByUserId($this->Session->read('Auth.User.id'));
+				$credit['Credit']['amount'] = $user['Credit']['amount']+5;
+				$this->Credit->save($credit);
         	  error_log(serialize($user_new), 0);
             }
         }
