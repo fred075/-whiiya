@@ -17,7 +17,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
+$cakeDescription = 'We have it in your accent';
+$title_for_layout = 'We have it in your accent';
+
 ?>
 <!DOCTYPE html>
 <html>
