@@ -3,7 +3,7 @@
 class AudiosController extends AppController {
 
 	var $components = array('Auth');
-	var $uses = array('Audio','User', 'Word');
+	var $uses = array('Audio','User', 'Word', 'Credit');
 
     public function beforeFilter() {
         parent::beforeFilter();
