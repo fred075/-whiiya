@@ -1,6 +1,7 @@
 We Have It In Your Accent
 ==========
-University of Fribourg 2013
+University of Fribourg 2013<br>
+Uses CakePHP and jQuery Framework
 
 Description
 ==========
